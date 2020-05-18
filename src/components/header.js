@@ -27,6 +27,7 @@ const drawerWidth = 240
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    position: 'fixed'
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -81,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Header = ({ siteTitle }) => {
+const Header = () => {
   const classes = useStyles()
 
   const theme = useTheme()
@@ -98,28 +99,15 @@ const Header = ({ siteTitle }) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        elevation={0}
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
+      <IconButton
+        color="inherit"
+        aria-label="Open drawer"
+        onClick={handleDrawerOpen}
+        edge="start"
+        className={clsx(classes.menuButton, open && classes.hide)}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit">
-            {siteTitle}
-          </Typography>
-        </Toolbar>
-      </AppBar>
+        <MenuIcon />
+      </IconButton>
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -134,8 +122,8 @@ const Header = ({ siteTitle }) => {
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
-              <ChevronRightIcon />
-            )}
+                <ChevronRightIcon />
+              )}
           </IconButton>
         </div>
         <Divider />
