@@ -1,16 +1,24 @@
 module.exports = {
   siteMetadata: {
     title: `Maxx Quality`,
-    description: `Kick off your next, great Gatsby project with this Material UI starter. This barebones starter ships with the main Gatsby and Material UI configuration files you might need.`,
-    author: `@dominicabela`,
+    description: `O máximo em saúde`,
+    author: `Kenedy Ribeiro`,
   },
   plugins: [
+    `gatsby-plugin-smoothscroll`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdown-pages`,
+        path: `${__dirname}/src/sections/Techs/Content`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -27,6 +35,7 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-material-ui`,
       // If you want to use styled components, in conjunction to Material-UI, you should:

@@ -7,6 +7,7 @@ import Apresentation from '../sections/Apresentation';
 import Techs from '../sections/Techs';
 import Contact from '../sections/Contact';
 
+
 const IndexPage = () => {
 
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -8,7 +9,8 @@ const useStyles = makeStyles((theme) => ({
         padding: '1em',
         height: '20em',
         display: 'flex',
-        alignItems: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '100% 100%'
     },
     text: {
         color: '#fff',
@@ -17,30 +19,37 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function Apresentation() {
-    const classes = useStyles()
+    const classes = useStyles();
+
     return (
         <StaticQuery
             query={graphql`
             query {
-                apresentationImage: file(relativePath: { eq: "default.jpg" }) {
+                apresentationImage: file(relativePath: { eq: "bgApresentation.jpg" }) {
                   childImageSharp {
-                    fluid(maxWidth: 300) {
+                    fluid {
                       ...GatsbyImageSharpFluid
                     }
                   }
+                }
+                logoApresentation: file(relativePath: { eq: "logo.PNG" }){
+                    childImageSharp {
+                        fixed(width: 400) {
+                            ...GatsbyImageSharpFixed
+                        }
+                    }
                 }
               }
             `}
             render={data => {
 
                 return (
-                    <div className={classes.container} style={{ backgroundImage: `url(${data.apresentationImage.childImageSharp.fluid.src})` }}>
-                        <h5 className={classes.text}>Some description</h5>
+                    <div id="apresentation" className={classes.container} style={{ backgroundImage: `url(${data.apresentationImage.childImageSharp.fluid.src})` }}>
+                        <Img fixed={data.logoApresentation.childImageSharp.fixed} />
                     </div>
                 )
             }}
         />
     );
 }
-
 export default Apresentation;

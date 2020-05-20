@@ -6,11 +6,7 @@ import { Link } from 'gatsby'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
 import List from '@material-ui/core/List'
-import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -22,12 +18,17 @@ import ListItemText from '@material-ui/core/ListItemText'
 import HomeIcon from '@material-ui/icons/Home'
 import ListIcon from '@material-ui/icons/ViewList'
 
+import scroolTo from 'gatsby-plugin-smoothscroll';
+
 const drawerWidth = 240
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    position: 'fixed'
+    position: 'fixed',
+    '& button': {
+      color: '#fff'
+    }
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -49,6 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
   hide: {
     display: 'none',
+    position: 'sticky'
   },
   drawer: {
     width: drawerWidth,
@@ -98,7 +100,6 @@ const Header = () => {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <IconButton
         color="inherit"
         aria-label="Open drawer"
@@ -110,7 +111,6 @@ const Header = () => {
       </IconButton>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
         anchor="left"
         open={open}
         classes={{
@@ -128,22 +128,30 @@ const Header = () => {
         </div>
         <Divider />
         <List>
-          <Link to="/">
-            <ListItem button>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText>Home</ListItemText>
-            </ListItem>
-          </Link>
-          <Link to="/components">
-            <ListItem button>
-              <ListItemIcon>
-                <ListIcon />
-              </ListItemIcon>
-              <ListItemText>Components</ListItemText>
-            </ListItem>
-          </Link>
+
+          <ListItem button onClick={() => scroolTo('#apresentation')}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText>Home</ListItemText>
+          </ListItem>
+
+
+          <ListItem button onClick={() => scroolTo('#techs')}>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <ListItemText>Tecnologias</ListItemText>
+          </ListItem>
+
+
+          <ListItem button onClick={() => scroolTo('#contact')}>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <ListItemText>Contato</ListItemText>
+          </ListItem>
+
         </List>
       </Drawer>
     </div>
