@@ -98,7 +98,7 @@ function Techs() {
 
     return (
         <div id="techs" className={classes.container} style={{ backgroundImage: `url(${techsQuery.file.childImageSharp.fluid.src})` }}>
-            <h3 className={classes.title}>Techs</h3>
+            <h3 className={classes.title}>Tecnologias</h3>
             <Paper className={classes.containerCards} elevation={3}>
                 {
                     showTechs()

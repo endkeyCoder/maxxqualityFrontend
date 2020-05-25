@@ -3,8 +3,13 @@ module.exports = {
     title: `Maxx Quality`,
     description: `O máximo em saúde`,
     author: `Kenedy Ribeiro`,
+    url: "https://www.maxxquality.com.br",
+    image: "/src/images/logoSite.png",
+    siteUrl: "https://www.maxxquality.com.br"
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
     `gatsby-plugin-smoothscroll`,
     `gatsby-plugin-react-helmet`,
     {
@@ -26,13 +31,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Maxx Quality`,
+        short_name: `Maxx Quality`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#001962`,
+        theme_color: `#00196`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo.PNG`, // This path is relative to the root of the site.
       },
     },
     `gatsby-transformer-remark`,

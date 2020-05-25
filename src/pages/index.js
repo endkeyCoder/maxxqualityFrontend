@@ -12,7 +12,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Maxx Quality" />
       <Apresentation />
       <Techs />
       <Contact />

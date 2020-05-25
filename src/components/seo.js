@@ -19,12 +19,13 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            url
+            image
           }
         }
       }
     `
   )
-
   const metaDescription = description || site.siteMetadata.description
 
   return (
@@ -71,6 +72,10 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `keywords`,
+          content: `${title}, ${metaDescription}, ${site.siteMetadata.url}, ${site.siteMetadata.author}, colchão, colchão terapeutico, colchões, colchões terapeuticos, saúde, sono, tratamento, dormir`
+        }
       ].concat(meta)}
     />
   )

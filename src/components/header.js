@@ -16,7 +16,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import HomeIcon from '@material-ui/icons/Home'
-import ListIcon from '@material-ui/icons/ViewList'
+import { DeveloperBoard, Mail } from '@material-ui/icons';
 
 import scroolTo from 'gatsby-plugin-smoothscroll';
 
@@ -139,7 +139,7 @@ const Header = () => {
 
           <ListItem button onClick={() => scroolTo('#techs')}>
             <ListItemIcon>
-              <ListIcon />
+              <DeveloperBoard />
             </ListItemIcon>
             <ListItemText>Tecnologias</ListItemText>
           </ListItem>
@@ -147,7 +147,7 @@ const Header = () => {
 
           <ListItem button onClick={() => scroolTo('#contact')}>
             <ListItemIcon>
-              <ListIcon />
+              <Mail />
             </ListItemIcon>
             <ListItemText>Contato</ListItemText>
           </ListItem>
