@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TextField, Button, makeStyles } from '@material-ui/core';
 import { StaticQuery, graphql } from 'gatsby';
 
+import api from '../../config/axios';
+
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
@@ -27,18 +29,18 @@ const useStyles = makeStyles(theme => ({
         '& div > div > input.MuiInputBase-input': {
             textShadow: '1px 1px 2px #000'
         },
-        [theme.breakpoints.down('sm')]:{
+        [theme.breakpoints.down('sm')]: {
             flexDirection: 'column'
         }
     },
-    containerItem:{
+    containerItem: {
         display: 'flex',
         flexDirection: 'column',
         width: '40%',
-       justifyContent: 'space-between',
-       [theme.breakpoints.down('sm')]:{
+        justifyContent: 'space-between',
+        [theme.breakpoints.down('sm')]: {
             width: '100%'
-       }
+        }
     },
     title: {
         color: '#fff',
@@ -66,6 +68,36 @@ function Contact() {
     function handleMessage(message) {
         setMessage(message)
     }
+    async function sendMail(evt) {
+        evt.preventDefault();
+        //função para envio de email com chamada API
+       
+        try {
+            const resSendMail = await api.post('/sendMail', {
+                transporter: {
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    secure: true,
+                    auth: {
+                        user: process.env.GATSBY_EMAIL_TRANSPORTER,
+                        pass: process.env.GATSBY_SENHA_TRANSPORTER
+                    }
+                },
+                sender: {
+                    from: `${name} <${email}>`,
+                    to: process.env.GATSBY_EMAIL_TRANSPORTER,
+                    subject: `Maxxquality Site: ${subject}`,
+                    text: `Mensagem: ${message}
+Email do remetente: ${email}`,
+                }
+            }) 
+            console.log(resSendMail.data)
+            alert(resSendMail.data.message)
+        } catch (error) {
+            console.log('print de error em sendMail => ', error)
+            alert('Problema com o email')
+        }
+    }
     return (
         <StaticQuery
             query={graphql`
@@ -82,7 +114,7 @@ function Contact() {
             render={data => (
                 <div id="contact" className={classes.container} style={{ backgroundImage: `url(${data.bgContact.childImageSharp.fluid.src})` }}>
                     <h3 className={classes.title}>Contato</h3>
-                    <div className={classes.container2}>
+                    <form onSubmit={sendMail} className={classes.container2}>
                         <div className={classes.containerItem}>
                             <TextField
                                 label="Nome"
@@ -118,9 +150,9 @@ function Contact() {
                                     height: "10em"
                                 }}
                             />
-                            <Button style={{ marginTop: '0.5em' }} variant="contained" color="secondary">Enviar</Button>
+                            <Button type="submit" style={{ marginTop: '0.5em' }} variant="contained" color="secondary">Enviar</Button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             )}
         />
